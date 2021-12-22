@@ -22,10 +22,10 @@ app.get('/', async (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about');
 });
-app.get('/post', async (req, res) => {
-  const posts = await Post.find({});
+app.get('/posts/:id', async (req, res) => {
+  const post = await Post.findById(req.params.id);
   res.render('post', {
-    posts,
+    post,
   });
 });
 app.get('/add_post', (req, res) => {
