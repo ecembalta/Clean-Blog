@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
+const fileUpload = require('express-fileupload');
 const methodOverride = require('method-override');
+const Post = require('./models/Post');
+
 const postController = require('./controllers/postController');
 const pageController = require('./controllers/pageController');
 
@@ -13,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(fileUpload());
 app.use(
   methodOverride('_method', {
     methods: ['POST', 'GET'],
